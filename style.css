@@ -93,66 +93,7 @@ body {
   -webkit-animation: flipBottom 0.6s cubic-bezier(0.15, 0.45, 0.28, 1);
           animation: flipBottom 0.6s cubic-bezier(0.15, 0.45, 0.28, 1);
 }
-@-webkit-keyframes flipTop {
-  0% {
-    transform: rotateX(0deg);
-    z-index: 2;
-  }
-  0%,
-  99% {
-    opacity: 0.99;
-  }
-  100% {
-    transform: rotateX(-90deg);
-    opacity: 0;
-  }
-}
-@keyframes flipTop {
-  0% {
-    transform: rotateX(0deg);
-    z-index: 2;
-  }
-  0%,
-  99% {
-    opacity: 0.99;
-  }
-  100% {
-    transform: rotateX(-90deg);
-    opacity: 0;
-  }
-}
-@-webkit-keyframes flipBottom {
-  0%,
-  50% {
-    z-index: -1;
-    transform: rotateX(90deg);
-    opacity: 0;
-  }
-  51% {
-    opacity: 0.99;
-  }
-  100% {
-    opacity: 0.99;
-    transform: rotateX(0deg);
-    z-index: 5;
-  }
-}
-@keyframes flipBottom {
-  0%,
-  50% {
-    z-index: -1;
-    transform: rotateX(90deg);
-    opacity: 0;
-  }
-  51% {
-    opacity: 0.99;
-  }
-  100% {
-    opacity: 0.99;
-    transform: rotateX(0deg);
-    z-index: 5;
-  }
-}
+
 
 .confetti {
     display: flex;
