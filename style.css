@@ -58,6 +58,7 @@ body {
   border-radius: 0 0 0.15em 0.15em;
   pointer-events: none;
   overflow: hidden;
+  transform-style: preserve-3d;
 }
 .card__bottom::after {
   display: block;
@@ -73,6 +74,7 @@ body {
   height: 100%;
   left: 0%;
   pointer-events: none;
+  transform-style: preserve-3d;
 }
 .card__back::before {
   position: relative;
