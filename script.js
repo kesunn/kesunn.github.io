@@ -72,13 +72,9 @@ function getTimeRemaining(endtime) {
 }
 
 
-function Clock(countdown,callback) {
-  
-  countdown = countdown ? new Date(Date.parse(countdown)) : false;
-  callback = callback || function(){};
-  
-  var updateFn = countdown ? getTimeRemaining : getTime;
-
+function Clock() {
+  countdown = new Date();
+  var updateFn = getTimeRemaining;
   this.el = document.createElement('div');
   this.el.className = 'flip-clock';
 
@@ -96,18 +92,8 @@ function Clock(countdown,callback) {
   function updateClock() {
     timeinterval = requestAnimationFrame(updateClock);
     
-    // throttle so it's not constantly updating the time.
-    if ( i++ % 10 ) { return; }
-    
     var t = updateFn(countdown);
-    if ( t.Total < 0 ) {
-      cancelAnimationFrame(timeinterval);
-      for ( key in trackers ){
-        trackers[key].update( 0 );
-      }
-      callback();
-      return;
-    }
+
     
     for ( key in trackers ){
       trackers[key].update( t[key] );
@@ -116,10 +102,6 @@ function Clock(countdown,callback) {
 
   setTimeout(updateClock,500);
 }
-
-var deadline = new Date(Date.parse(new Date()) + 12 * 24 * 60 * 60 * 1000);
-var c = new Clock(deadline, function(){ alert('countdown complete') });
-document.body.appendChild(c.el);
 
 var clock = new Clock();
 document.body.appendChild(clock.el);
