@@ -1,4 +1,4 @@
-const PastDate = new Date(2023, 2, 21, 18); // March 21, 2023
+const PastDate = new Date(2023, 2, 21, 16); // March 21, 2023
 
 const CountUp = setInterval(() => {
     const CurrentDate = new Date();
