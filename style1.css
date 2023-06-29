@@ -1,0 +1,125 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+  background-color: #15232d;
+  color: #edebeb;
+  overflow: hidden;
+}
+.container,
+.digits,
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: row;
+}
+.container {
+  flex-direction: column;
+}
+p {
+  min-width: 12rem;
+  text-align: center;
+  padding-bottom: 1rem;
+}
+.text {
+  gap: 0.9rem;
+}
+.digits {
+  gap: 0.6rem;
+  margin-left: 6rem;
+}
+.container-segment:nth-child(even) {
+  margin-right: 1rem;
+}
+.digit{
+    position: relative;
+}
+.flip-card {
+    position: relative;
+    display: inline-flex;
+  flex-direction: column;
+  box-shadow: inset 0 1px hsla(0, 0%, 100%, 0.05);
+  height: 100%;
+  font-size: 5em;
+  width: 12.5%;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  perspective: 310px;
+}
+.flip-bottom,
+.flip-top,
+.flip-card .top-flip,
+.flip-card .bottom-flip {
+  padding: 0.25em;
+  height: 0.75em;
+  background-color: #333232;
+  overflow: hidden;
+  box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.25),
+    0 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
+}
+.flip-top {
+  border-radius: 0.4rem 0.4rem 0 0;
+  box-shadow: inset 0 0.2rem 0.15rem hsla(0, 0%, 100%, 0.07);
+}
+.flip-bottom {
+  display: flex;
+  align-items: flex-end;
+  border-radius: 0 0 0.4rem 0.4rem;
+  box-shadow: inset 0 0.2rem 0.15rem hsla(0, 0%, 100%, 0.07);
+  box-shadow: inset 0 0.2rem 0.1rem rgba(0, 0, 0, 0.202);
+  overflow: hidden;
+}
+.flip-card .top-flip {
+    position: absolute;
+    top: 0;
+    border-radius: 0.4rem 0.4rem 0 0;
+    box-shadow: inset 0 0.2rem 0.15rem hsla(0, 0%, 100%, 0.07);
+    animation: flip-t 0.3s ease-in;
+    transform-origin: bottom;
+    transform: rotateX(-0deg);
+}
+.flip-card .bottom-flip{
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    border-radius: 0 0 0.4rem 0.4rem;
+    box-shadow: inset 0 0.2rem 0.1rem rgba(0, 0, 0, 0.202);
+    transform: rotateX(90deg);
+    animation: flip-b 0.6s ease-out 0.3s;
+    transform-origin: top;
+}
+@keyframes flip-t {
+    100% {
+        transform: rotateX(-90deg);
+    }
+}
+@keyframes flip-b {
+    15%,
+    60%,
+    95%,
+    100% {
+        transform: rotateX(0deg);
+    }
+    45% {
+        transform: rotateX(45deg);
+    }
+    75% {
+        transform: rotateX(20deg);
+    }
+    97% {
+        transform: rotateX(4deg);
+    }
+}
