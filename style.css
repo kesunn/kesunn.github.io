@@ -126,7 +126,7 @@ body {
 @keyframes flipBottom {
   0%,
   50% {
-    z-index: -1;
+    z-index: 1;
     transform: rotateX(90deg);
     opacity: 0;
   }
@@ -136,7 +136,7 @@ body {
   100% {
     opacity: 0.99;
     transform: rotateX(0deg);
-    z-index: 5;
+    z-index: 3;
   }
 }
 
