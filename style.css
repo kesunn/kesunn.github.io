@@ -93,6 +93,20 @@ body {
   -webkit-animation: flipBottom 0.6s cubic-bezier(0.15, 0.45, 0.28, 1);
           animation: flipBottom 0.6s cubic-bezier(0.15, 0.45, 0.28, 1);
 }
+@-webkit-keyframes flipTop {
+  0% {
+    transform: rotateX(0deg);
+    z-index: 2;
+  }
+  0%,
+  99% {
+    opacity: 0.99;
+  }
+  100% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+}
 @keyframes flipTop {
   0% {
     transform: rotateX(0deg);
@@ -107,8 +121,7 @@ body {
     opacity: 0;
   }
 }
-
-@keyframes flipBottom {
+@-webkit-keyframes flipBottom {
   0%,
   50% {
     z-index: -1;
@@ -124,21 +137,21 @@ body {
     z-index: 5;
   }
 }
-
-.flip .card__back::before {
-  -webkit-animation: flipTop 0.3s cubic-bezier(0.37, 0.01, 0.94, 0.35);
-  animation: flipTop 0.3s cubic-bezier(0.37, 0.01, 0.94, 0.35);
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  transform-origin: center bottom;
-}
-
-.flip .card__back .card__bottom {
-  transform-origin: center top;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation: flipBottom 0.6s cubic-bezier(0.15, 0.45, 0.28, 1);
-  animation: flipBottom 0.6s cubic-bezier(0.15, 0.45, 0.28, 1);
+@keyframes flipBottom {
+  0%,
+  50% {
+    z-index: -1;
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  51% {
+    opacity: 0.99;
+  }
+  100% {
+    opacity: 0.99;
+    transform: rotateX(0deg);
+    z-index: 5;
+  }
 }
 
 .confetti {
