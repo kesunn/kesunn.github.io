@@ -23,6 +23,7 @@ body {
 
 .container,
 .digits,
+.digitsday,
 .text {
   display: flex;
   justify-content: center;
@@ -39,21 +40,21 @@ p {
   padding-bottom: 1rem;
 }
 .text {
-  gap: 0.9rem;
+  gap: 0.8rem;
 }
 .digits {
-  gap: 0.6rem;
-  margin-left: 6rem;
+  gap: 0.2rem;
+  margin-left: 10rem;
 }
-.container-segment:nth-child(even) {
-  margin-right: 1rem;
+.container-segment:nth-child(odd) {
+  margin-right: 1.5rem;
 }
 .digit{
     position: relative;
 }
 .flip-card {
-    position: relative;
-    display: inline-flex;
+  position: relative;
+  display: inline-flex;
   flex-direction: column;
   box-shadow: inset 0 1px hsla(0, 0%, 100%, 0.05);
   height: 100%;
