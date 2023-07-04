@@ -15,8 +15,8 @@ function FlipAllCards(time) {
     Flipper(document.querySelector("[data-seconds-ones]"), secs % 10);
     setTimeout(() => {
         Flipper(document.querySelector("[data-seconds-tens]"), Math.floor(secs / 10));
-        Flipper(document.querySelector("[data-days-tens]"), Math.floor(days / 10));
-        Flipper(document.querySelector("[data-days-ones]"), days % 10);
+        //Flipper(document.querySelector("[data-days-tens]"), Math.floor(days / 10));
+        Flipper(document.querySelector("[data-days-ones]"), days);
         Flipper(document.querySelector("[data-hours-tens]"), Math.floor(hrs / 10));
         Flipper(document.querySelector("[data-hours-ones]"), hrs % 10);
         Flipper(document.querySelector("[data-minutes-tens]"), Math.floor(mins / 10));
