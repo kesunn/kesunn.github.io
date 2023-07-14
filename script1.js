@@ -4,19 +4,20 @@ const CountUp = setInterval(() => {
     const CurrentDate = new Date();
     const TimePassed = Math.floor((CurrentDate - PastDate) / 1000);
     FlipAllCards(TimePassed);
-}, 250);
+}, 500);
 
 function FlipAllCards(time) {
     const secs = time % 60;
     const mins = Math.floor(time / 60) % 60;
     const hrs = Math.floor(time / 3600) % 24;
     const days = Math.floor(time / 86400);
-    console.log(days, hrs, mins, secs);
+    //console.log(days, hrs, mins, secs);
     Flipper(document.querySelector("[data-seconds-ones]"), secs % 10);
     setTimeout(() => {
         Flipper(document.querySelector("[data-seconds-tens]"), Math.floor(secs / 10));
-        //Flipper(document.querySelector("[data-days-tens]"), Math.floor(days / 10));
-        Flipper(document.querySelector("[data-days-ones]"), days);
+        Flipper(document.querySelector("[data-days-huns]"), Math.floor(days / 100));
+        Flipper(document.querySelector("[data-days-tens]"), Math.floor(days / 10 % 10));
+        Flipper(document.querySelector("[data-days-ones]"), days % 10);
         Flipper(document.querySelector("[data-hours-tens]"), Math.floor(hrs / 10));
         Flipper(document.querySelector("[data-hours-ones]"), hrs % 10);
         Flipper(document.querySelector("[data-minutes-tens]"), Math.floor(mins / 10));
