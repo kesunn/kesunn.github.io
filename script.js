@@ -1,107 +1,56 @@
-console.clear();
+const PastDate = new Date(2023, 2, 21, 16); // March 21, 2023
 
+const CountUp = setInterval(() => {
+    const CurrentDate = new Date();
+    const TimePassed = Math.floor((CurrentDate - PastDate) / 1000);
+    FlipAllCards(TimePassed);
+}, 500);
 
-function CountdownTracker(label, value){
-
-  var el = document.createElement('span');
-
-  el.className = 'flip-clock__piece';
-  el.innerHTML = '<b class="flip-clock__card card"><b class="card__top"></b><b class="card__bottom"></b><b class="card__back"><b class="card__bottom"></b></b></b>' + 
-    '<span class="flip-clock__slot">' + label + '</span>';
-
-  this.el = el;
-
-  var top = el.querySelector('.card__top'),
-      bottom = el.querySelector('.card__bottom'),
-      back = el.querySelector('.card__back'),
-      backBottom = el.querySelector('.card__back .card__bottom');
-
-  this.update = function(val){
-    val = ( '0' + val ).slice(-2);
-    if ( val !== this.currentValue ) {
-      
-      if ( this.currentValue >= 0 ) {
-        back.setAttribute('data-value', this.currentValue);
-        bottom.setAttribute('data-value', this.currentValue);
-      }
-      this.currentValue = val;
-      top.innerText = this.currentValue;
-      backBottom.setAttribute('data-value', this.currentValue);
-
-      this.el.classList.remove('flip');
-      void this.el.offsetWidth;
-      this.el.classList.add('flip');
-    }
-  }
-  
-  this.update(value);
+function FlipAllCards(time) {
+    const secs = time % 60;
+    const mins = Math.floor(time / 60) % 60;
+    const hrs = Math.floor(time / 3600) % 24;
+    const days = Math.floor(time / 86400);
+    //console.log(days, hrs, mins, secs);
+    Flipper(document.querySelector("[data-seconds-ones]"), secs % 10);
+    setTimeout(() => {
+        Flipper(document.querySelector("[data-seconds-tens]"), Math.floor(secs / 10));
+        Flipper(document.querySelector("[data-days-huns]"), Math.floor(days / 100));
+        Flipper(document.querySelector("[data-days-tens]"), Math.floor(days / 10 % 10));
+        Flipper(document.querySelector("[data-days-ones]"), days % 10);
+        Flipper(document.querySelector("[data-hours-tens]"), Math.floor(hrs / 10));
+        Flipper(document.querySelector("[data-hours-ones]"), hrs % 10);
+        Flipper(document.querySelector("[data-minutes-tens]"), Math.floor(mins / 10));
+        Flipper(document.querySelector("[data-minutes-ones]"), mins % 10);
+    }, 100);
 }
 
-// Calculation adapted from https://www.sitepoint.com/build-javascript-countdown-timer-no-dependencies/
+function Flipper(FlipCard, newNumber) {
+    const TopHalf = FlipCard.querySelector(".flip-top");
+    const StartNumber = parseInt(TopHalf.textContent);
 
-function getTimeRemaining(endtime) {
-  var t = Date.parse(endtime) - Date.parse(new Date());
-  
-      // 特定日期（2023年3月21日）的时间戳
-	var eventDate = new Date("2023-03-21 16:00:00").getTime();
+    if (newNumber === StartNumber) return;
 
-	// 当前日期的时间戳
-	var currentDate = new Date().getTime();
+    const BottomHalf = FlipCard.querySelector(".flip-bottom");
+    const TopFlip = document.createElement("div");
+    TopFlip.classList.add("top-flip");
+    const BottomFlip = document.createElement("div");
+    BottomFlip.classList.add("bottom-flip");
 
-	// 计算时间差（毫秒）
-	var timeDiff = currentDate - eventDate;
+    TopHalf.textContent = StartNumber;
+    TopFlip.textContent = StartNumber;
+    BottomHalf.textContent = StartNumber;
+    BottomFlip.textContent = newNumber;
 
-	// 将时间差转换为天数、小时、分钟和秒
-	var secondsPassed = Math.floor(timeDiff / 1000);
-	var minutesPassed = Math.floor(secondsPassed / 60);
-	var hoursPassed = Math.floor(minutesPassed / 60);
-	var daysPassed = Math.floor(hoursPassed / 24);
-
-	// 计算剩余小时、分钟和秒
-	var hours = hoursPassed % 24;
-	var minutes = minutesPassed % 60;
-	var seconds = secondsPassed % 60;
-        
-  return {
-    'Total': t,
-    'Days': daysPassed,
-    'Hours': hours,
-    'Minutes': minutes,
-    'Seconds': seconds
-  };
+    TopFlip.addEventListener("animationstart", (e) => {
+        TopHalf.textContent = newNumber;
+    });
+    TopFlip.addEventListener("animationend", (e) => {
+        TopFlip.remove();
+    });
+    BottomFlip.addEventListener("animationend", (e) => {
+        BottomHalf.textContent = newNumber;
+        BottomFlip.remove();
+    });
+    FlipCard.append(TopFlip, BottomFlip);
 }
-
-
-function Clock() {
-  countdown = new Date();
-  var updateFn = getTimeRemaining;
-  this.el = document.createElement('div');
-  this.el.className = 'flip-clock';
-
-  var trackers = {},
-      t = updateFn(countdown),
-      key, timeinterval;
-
-  for ( key in t ){
-    if ( key === 'Total' ) { continue; }
-    trackers[key] = new CountdownTracker(key, t[key]);
-    this.el.appendChild(trackers[key].el);
-  }
-
-  var i = 0;
-  function updateClock() {
-    timeinterval = requestAnimationFrame(updateClock);
-    
-    var t = updateFn(countdown);
-
-    
-    for ( key in trackers ){
-      trackers[key].update( t[key] );
-    }
-  }
-
-  setTimeout(updateClock,500);
-}
-
-var clock = new Clock();
-document.body.appendChild(clock.el);
