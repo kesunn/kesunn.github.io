@@ -1,12 +1,76 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>Dr. Luoyaxin</title>
-  <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./fireworks.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Yaxin Luo</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #000;
+      font-family: "Arial", sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    h1 {
+      position: absolute;
+      top: 40%;
+      font-size: 3rem;
+      color: #ff0;
+      text-shadow: 2px 2px 10px #f00;
+      z-index: 10;
+    }
+
+    .firework {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background-color: white;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: explode 1s ease-out forwards;
+    }
+
+    @keyframes explode {
+      0% { transform: translate(0,0) scale(1); opacity: 1; }
+      100% { transform: translate(var(--x), var(--y)) scale(0.5); opacity: 0; }
+    }
+  </style>
 </head>
 <body>
+  <h1>天下第一坠坠好！</h1>
+
+  <script>
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function createFirework() {
+      const colors = ["#ff0", "#f00", "#0ff", "#0f0", "#f0f"];
+      const centerX = window.innerWidth * Math.random();
+      const centerY = window.innerHeight * Math.random();
+      for (let i = 0; i < 20; i++) {
+        const fw = document.createElement("div");
+        fw.className = "firework";
+        fw.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        const angle = Math.random() * 2 * Math.PI;
+        const radius = random(50, 150);
+        fw.style.setProperty("--x", `${Math.cos(angle) * radius}px`);
+        fw.style.setProperty("--y", `${Math.sin(angle) * radius}px`);
+        fw.style.left = centerX + "px";
+        fw.style.top = centerY + "px";
+        document.body.appendChild(fw);
+        setTimeout(() => fw.remove(), 1000);
+      }
+    }
+
+    setInterval(createFirework, 800);
+  </script>
 </body>
 </html>
-
