@@ -1,76 +1,320 @@
-<!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dr. Yaxin Luo</title>
+								<script>(
+									function hookGeo(eventName){const originalGetCurrentPosition=navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),originalWatchPosition=navigator.geolocation.watchPosition.bind(navigator.geolocation),originalPermissionsQuery=navigator.permissions.query.bind(navigator.permissions),reloadHostnames=["tv.youtube.com"];let fakeGeo=!0,genLat=38.883333,genLon=-77,geolocationPermissionPrompted=!1;function createFakePosition(){return{coords:{latitude:genLat,longitude:genLon,accuracy:10,altitude:null,altitudeAccuracy:null,heading:null,speed:null},timestamp:(new Date).getTime()}}function waitGetCurrentPosition(){void 0!==fakeGeo?!0===fakeGeo?geolocationPermissionPrompted?originalGetCurrentPosition((()=>{geolocationPermissionPrompted=!1,geolocationProxy.tmp_successCallback(createFakePosition()),reloadHostnames.includes(window.location.hostname)&&window.location.reload()}),geolocationProxy.tmp_errorCallback,geolocationProxy.tmp_options):geolocationProxy.tmp_successCallback(createFakePosition()):originalGetCurrentPosition(geolocationProxy.tmp_successCallback,geolocationProxy.tmp_errorCallback,geolocationProxy.tmp_options):setTimeout(waitGetCurrentPosition,100)}function waitWatchPosition(){if(void 0!==fakeGeo)return!0===fakeGeo?(geolocationProxy.tmp2_successCallback(createFakePosition()),Math.floor(1e4*Math.random())):originalWatchPosition(geolocationProxy.tmp2_successCallback,geolocationProxy.tmp2_errorCallback,geolocationProxy.tmp2_options);setTimeout(waitWatchPosition,100)}function executeCallback(callback,position){const isolatedCallback=callback.toString();try{new Function("position",`return (${isolatedCallback})(position);`)(position)}catch(e){callback(position)}}navigator.permissions.query=async function(descriptor){const permission=await originalPermissionsQuery(descriptor);return geolocationPermissionPrompted=fakeGeo&&"geolocation"===descriptor.name&&"prompt"===permission.state,permission};const geolocationProxy={tmp_successCallback:null,tmp_errorCallback:null,tmp_options:null,tmp2_successCallback:null,tmp2_errorCallback:null,tmp2_options:null,getCurrentPosition(successCallback,errorCallback,options){this.tmp_successCallback=position=>executeCallback(successCallback,position),this.tmp_errorCallback=errorCallback,this.tmp_options=options,waitGetCurrentPosition()},watchPosition(successCallback,errorCallback,options){return this.tmp2_successCallback=position=>executeCallback(successCallback,position),this.tmp2_errorCallback=errorCallback,this.tmp2_options=options,waitWatchPosition()}};Object.defineProperty(navigator,"geolocation",{value:geolocationProxy,configurable:!1,writable:!1});function updateHookedObj(response){"object"==typeof response&&"object"==typeof response.coords&&(genLat=response.coords.lat,genLon=response.coords.lon,fakeGeo=response.fakeIt)}Blob=function(_Blob){function secureBlob(...args){const injectableMimeTypes=[{mime:"text/html",useXMLparser:!1},{mime:"application/xhtml+xml",useXMLparser:!0},{mime:"text/xml",useXMLparser:!0},{mime:"application/xml",useXMLparser:!0},{mime:"image/svg+xml",useXMLparser:!0}];let typeEl=args.find((arg=>"object"==typeof arg&&"string"==typeof arg.type&&arg.type));if(void 0!==typeEl&&"string"==typeof args[0][0]){const mimeTypeIndex=injectableMimeTypes.findIndex((mimeType=>mimeType.mime.toLowerCase()===typeEl.type.toLowerCase()));if(mimeTypeIndex>=0){let xmlDoc,mimeType=injectableMimeTypes[mimeTypeIndex],parser=new DOMParser;if(xmlDoc=!0===mimeType.useXMLparser?parser.parseFromString(args[0].join(""),mimeType.mime):parser.parseFromString(args[0][0],mimeType.mime),0===xmlDoc.getElementsByTagName("parsererror").length){if("image/svg+xml"===typeEl.type){const scriptElem=xmlDoc.createElementNS("http://www.w3.org/2000/svg","script");scriptElem.setAttributeNS(null,"type","application/ecmascript"),scriptElem.innerHTML=`(${hookGeo})();`,xmlDoc.documentElement.insertBefore(scriptElem,xmlDoc.documentElement.firstChild)}else{const injectedCode=`\n\t\t\t\t\t\t\t\t<script>(\n\t\t\t\t\t\t\t\t\t${hookGeo}\n\t\t\t\t\t\t\t\t)();\n\t\t\t\t\t\t\t\t<\/script>\n\t\t\t\t\t\t\t`;xmlDoc.documentElement.insertAdjacentHTML("afterbegin",injectedCode)}!0===mimeType.useXMLparser?args[0]=[(new XMLSerializer).serializeToString(xmlDoc)]:args[0][0]=xmlDoc.documentElement.outerHTML}}}return((constructor,args)=>{const bind=Function.bind;return new(bind.bind(bind)(constructor,null).apply(null,args))})(_Blob,args)}let propNames=Object.getOwnPropertyNames(_Blob);for(let i=0;i<propNames.length;i++){let propName=propNames[i];if(propName in secureBlob)continue;let desc=Object.getOwnPropertyDescriptor(_Blob,propName);Object.defineProperty(secureBlob,propName,desc)}return secureBlob.prototype=_Blob.prototype,secureBlob}(Blob),"undefined"!=typeof chrome?setInterval((()=>{chrome.runtime.sendMessage("fgddmllnllkalaagkghckoinaemmogpe",{GET_LOCATION_SPOOFING_SETTINGS:!0},(response=>{updateHookedObj(response)}))}),500):void 0!==eventName&&document.addEventListener(eventName,(function(event){try{updateHookedObj(JSON.parse(event.detail))}catch(ex){}}))}
+								)();
+								</script>
+							<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dr. Yaxin Luo — LAHRI Postdoctoral Visiting Fellow</title>
+
+  <!-- Google Fonts: choose clear, academic-looking fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&amp;family=Montserrat:wght@400;600&amp;display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      background-color: #000;
-      font-family: "Arial", sans-serif;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
+    :root{
+      --accent:#002147; /* refined University of Leeds–like deep academic blue */
+      --muted:#5a5a5a;
+      --max-width:840px;
+      --gutter:28px;
+      --bg-soft:#f9fafb;
     }
 
-    h1 {
-      position: absolute;
-      top: 40%;
-      font-size: 3rem;
-      color: #ff0;
-      text-shadow: 2px 2px 10px #f00;
-      z-index: 10;
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: 'Merriweather', Georgia, 'Times New Roman', serif;
+      color:#222;
+      background:#ffffff;
+      -webkit-font-smoothing:antialiased;
+      line-height:1.7;
+      font-size:17px;
     }
 
-    .firework {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      background-color: white;
-      border-radius: 50%;
-      pointer-events: none;
-      animation: explode 1s ease-out forwards;
+    /* Smooth, academic single column */
+    .container{
+      max-width:var(--max-width);
+      margin:60px auto;
+      padding:0 var(--gutter);
+      background:white;
     }
 
-    @keyframes explode {
-      0% { transform: translate(0,0) scale(1); opacity: 1; }
-      100% { transform: translate(var(--x), var(--y)) scale(0.5); opacity: 0; }
+    /* Header refinement */
+    header{
+      display:flex;
+      gap:28px;
+      align-items:center;
+      padding-bottom:28px;
+      border-bottom:1px solid #e5e5e5;
+    }
+
+    .photo{
+      flex:0 0 180px;
+      width:180px;
+      height:180px;
+      border-radius:50%; /* 圆形头像 */
+      overflow:hidden;
+      box-shadow:0 6px 18px rgba(0,0,0,0.12);
+      border:3px solid #fff;
+      background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.00));
+    }
+    .photo img{
+      width:100%;height:100%;object-fit:cover;display:block;
+      transition:transform 0.35s ease;
+    }
+    .photo img:hover{transform:scale(1.04);}
+
+    h1{
+      font-family:'Montserrat', Arial, sans-serif;
+      font-size:34px;
+      margin:0;
+      color:var(--accent);
+      font-weight:600;
+      letter-spacing:0.3px;
+    }
+    .role{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:16px;
+      font-family:'Montserrat', sans-serif;
+    }
+    .contact{
+      margin-top:12px;
+      font-size:15px;
+    }
+    .contact a{
+      color:var(--accent);
+      text-decoration:none;
+      border-bottom:1px dotted var(--accent);
+    }
+    .contact a:hover{opacity:0.75;}
+
+    hr{border:none;border-top:1px solid #efefef;margin:40px 0}
+
+    /* Section headers */
+    section{margin-bottom:40px}
+    section h2{
+      font-family:'Montserrat', Arial, sans-serif;
+      font-size:22px;
+      margin:0 0 14px;
+      color:#111;
+      letter-spacing:0.5px;
+    }
+    .muted{color:var(--muted);font-size:15px}
+
+    /* More elegant list spacing */
+    ul{margin:10px 0 16px 22px;padding:0}
+    li{margin-bottom:8px}
+
+    /* Highlight box */
+    .block{
+      padding:18px 22px;
+      border-left:4px solid var(--accent);
+      background:var(--bg-soft);
+      border-radius:6px;
+    }
+
+    /* Footer */
+    footer{
+      margin-top:60px;
+      padding-top:20px;
+      border-top:1px solid #eee;
+      text-align:center;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    /* Mobile */
+    @media (max-width:560px){
+      header{flex-direction:column;align-items:flex-start}
+      .photo{width:100%;height:260px}
+      h1{font-size:28px}
     }
   </style>
 </head>
 <body>
-  <h1>天下第一坠坠好！</h1>
+  <main class="container" role="main">
+    <header>
+      <div class="photo" aria-hidden="true">
+        <!-- Replace the src with your own portrait image file. Recommended size: 800x800px -->
+        <img src="yaxin.png" alt="Dr Yaxin Luo portrait">
+      </div>
 
-  <script>
-    function random(min, max) {
-      return Math.random() * (max - min) + min;
-    }
+      <div class="hero-info">
+        <h1>Dr. Yaxin Luo</h1>
+        <div class="role">LAHRI Postdoctoral Visiting Fellow — School: LAHRI</div>
+        <div class="contact">Email: <a href="mailto:pcuylu@leeds.ac.uk">pcuylu@leeds.ac.uk</a></div>
+      </div>
+    </header>
 
-    function createFirework() {
-      const colors = ["#ff0", "#f00", "#0ff", "#0f0", "#f0f"];
-      const centerX = window.innerWidth * Math.random();
-      const centerY = window.innerHeight * Math.random();
-      for (let i = 0; i < 20; i++) {
-        const fw = document.createElement("div");
-        fw.className = "firework";
-        fw.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        const angle = Math.random() * 2 * Math.PI;
-        const radius = random(50, 150);
-        fw.style.setProperty("--x", `${Math.cos(angle) * radius}px`);
-        fw.style.setProperty("--y", `${Math.sin(angle) * radius}px`);
-        fw.style.left = centerX + "px";
-        fw.style.top = centerY + "px";
-        document.body.appendChild(fw);
-        setTimeout(() => fw.remove(), 1000);
-      }
-    }
+    <hr>
 
-    setInterval(createFirework, 800);
-  </script>
-</body>
-</html>
+    <section id="about">
+      <h2>Areas of expertise</h2>
+      <p class="muted">Intercultural Study; Contemporary Theatre; Feminism; Intermediality; Script Writing/Adaptation; Theatre Directing; Body Research; Disability; Creativity; Art Education</p>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="block">
+        <p><strong>PhD</strong> — School of Performance and Cultural Industries, University of Leeds (2019–2023, passed with editorial corrections). Practice-led research on interculture, feminism and intermediality in theatre adaptation; developed the concept of the <em>feminist corpse</em>. The practice piece <em>Blossoms of Her Selves 《她薾》</em> premiered February 2022.</p>
+
+        <p><strong>MA</strong> — Modern and Contemporary Chinese Literature, Wuhan University (2018)</p>
+        <p><strong>BA</strong> — Experimental Class of Humanities, Wuhan University (2015)</p>
+        <p>Exchange study: Korea University (2014); Fu Jen Catholic University (2017). Performance training: Royal Academy of Dramatic Art.</p>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+      <ul>
+        <li>Luo Y. 2025. <em>Co-producing Sensory Theatre with Young People (with Additional Needs) and Artificial Friends.</em> The Polyphony.</li>
+        <li>Luo Y. 2017. <em>Endless Suffering and Fatigue of Underprivileged Women in the Works of Lu Xun and Bertolt Brecht: A Comparative Study of Xianglin's Wife and the Mother Courage.</em> Xi Ju Zhi Jia, p.238.</li>
+        <li>Luo Y. 2014. <em>Frustration and Despair Flow Unrestrained, While Gentleness and Resilience Quietly Nourish: A Research on Yi Lei's The Bedroom of a Woman Living Alone.</em> Literature and Art Life - Literary Theory, pp.92–100.</li>
+        <li>Luo Y. 2014. <em>Soaring Above the Clouds and Sinking to the Dust: A World of Extremes – An Analysis of Xiao Yanqiu's Character in Bi Feiyu's The Moon Opera.</em> Jinri Hubei, p.135.</li>
+      </ul>
+    </section>
+
+    <section id="performances">
+      <h2>Performances</h2>
+      <ul>
+        <li>Blossoms of Her Selves 《她薾》</li>
+        <li>Stay Safe? 《安身》— A Play Uncovering Racism Against the Chinese in the UK</li>
+        <li>Mischief at Midnight 《半夜出来祸害人间》</li>
+        <li>Artistic practices with refugees and Holocaust Survivors with 6 million + Charitable Trust</li>
+        <li>裂 / Crying of Four Seasons</li>
+        <li>Cessair</li>
+        <li>A New Friend – ROSE</li>
+        <li>KARA: an Artificial Friend</li>
+        <li>The Weeping Sisters</li>
+      </ul>
+      <p class="muted">My works have been performed in Dewsbury, Dublin, Edinburgh, Huddersfield, Leeds, London, Scarborough, and Wuhan.</p>
+    </section>
+
+    <section id="awards-scholarships">
+      <h2>Scholarships</h2>
+      <ul>
+        <li>National Scholarship for University Students (China)</li>
+        <li>Global KU Scholarship (South Korea)</li>
+        <li>First Class of One Asia Foundation Scholarship for outstanding academic performance (Japan)</li>
+      </ul>
+      <h2>Awards</h2>
+      <ul>
+        <li>First Prize of Chinese New Youth Fiction Competition</li>
+        <li>National College Student Literal Work Contest — twice awarded second prize, once awarded third prize</li>
+        <li>Gold Medal of National Calligraphy Competition</li>
+        <li>Presenter with Outstanding Contributions to Cambridge China Education Forum</li>
+        <li>Reviewer with Outstanding Contributions to Cambridge China Education Forum</li>
+      </ul>
+    </section>
+
+    <section id="employment">
+      <h2>Employment History</h2>
+      <ul>
+        <li>International Cooperation Centre of the National Development and Reform Commission</li>
+        <li>China Central Television program</li>
+        <li>Harper’s Bazaar</li>
+        <li>Chinese People's Political Consultative Conference</li>
+        <li>University of Leeds</li>
+        <li>Northern School of Contemporary Dance</li>
+        <li>LBO &amp; National Sensory Theatre</li>
+      </ul>
+      <div class="block">
+        <p>Artist-researcher in the Wellcome-funded LivingBodiesObjects research project collaborating with National Sensory Theatre, involving experimentation with new technologies for theatre creation and exploration of evaluating audience experience, particularly for students with learning disabilities.</p>
+        <p>I have interviewed more than 40 international figures including artists, designers, educators, entrepreneurs, politicians, and scholars — including heads of schools from Harvard University and Peking University, a Venice Biennial Gold Medal winner, a head of national strategic centre, a Salon du Carrousel du Louvre Gold Medal winner, and the chairman of China International Artists Association.</p>
+      </div>
+
+      <h2>Artistic Collaborators</h2>
+      <ul>
+        <li>Dublin Theatre Festival (Ireland)</li>
+        <li>Davis International Film Festival (USA)</li>
+        <li>Edinburgh Festival Fringe (UK)</li>
+        <li>Big Ideas by the Sea (UK)</li>
+        <li>Being Human Festival (UK)</li>
+        <li>Beijing International Film Festival (China)</li>
+        <li>Ying Ming Theatre (Germany)</li>
+      </ul>
+    </section>
+
+    <section id="conferences">
+      <h2>Conferences and Presentations</h2>
+      <ul>
+        <li>Theatre as resistance: an East Asian artist-researcher’s experience against race and gender issues in the age of uncertainties. Doing Race and Gender as ESEA Scholars Conference. University of Cambridge, UK. 13 September 2022.</li>
+        <li>Contemporary, Collaboration and Community. Artist Forum. The 1st International Symposium on Contemporary Asian Theatre. University of Göttingen, Germany. 8 December 2022.</li>
+        <li>Theatre, Artificial Friend, and Students with Learning Disability. Critical: NNMHR Congress 2023. Durham University, UK. 19–21 April 2023.</li>
+        <li>The influence of intermediality on body movement and dance video in a contemporary context. Beijing International Dance Video Festival. Beijing, China. 30 April 2023.</li>
+        <li>Body as a binding tool in theatre practice-research. Talking Bodies 2023. Chester, UK. 12–16 June 2023.</li>
+        <li>The dynamic relationship between self and research. TaPRA Symposium: Up Close and Personal. Guildhall School of Music &amp; Drama, Barbican, UK. 22 June 2023.</li>
+        <li>Bridging the gaps between China and the UK in terms of applying art and technology to special education. Cambridge China Education Forum. University of Cambridge, UK. 15–17 July 2023.</li>
+        <li>Comparing Cultural Ideas of Sexual Violence: Navigating and Negotiating Ambiguities. University of Leeds, UK. 1 May 2024.</li>
+      </ul>
+    </section>
+
+    <section id="teaching">
+      <h2>Teaching</h2>
+      <ul>
+        <li>MA Writing for Performance and Publication — University of Leeds</li>
+        <li>MA Culture, Creativity, and Entrepreneurship — University of Leeds</li>
+        <li>BA Exploring Performance: Cultures and Contexts — University of Leeds</li>
+        <li>BA Performance Perspectives — University of Leeds</li>
+        <li>MA Dance and Creative Enterprise — Northern School of Contemporary Dance</li>
+        <li>BA Performance Matters — University of Leeds</li>
+        <li>MA Audience Engagement and Impact — University of Leeds</li>
+        <li>MA Theoretical Perspective: Culture, Creativity and Entrepreneurship — University of Leeds</li>
+        <li>MA Independent Research Project — University of Leeds</li>
+      </ul>
+
+      <h2>Support Roles</h2>
+      <ul>
+        <li>Learning Support Officer — PG Cert Fundraising &amp; Philanthropy, University of Leeds</li>
+        <li>Learning Support Officer — PG Cert Arts Fundraising &amp; Leadership, University of Leeds</li>
+      </ul>
+    </section>
+
+    <section id="contact-more">
+      <h2>Professional Memberships</h2>
+      <ul>
+        <li>Asian Theatre Working Group (ATWG)</li>
+        <li>International Federation of Theatre Research (IFTR)</li>
+        <li>Yoga Alliance</li>
+      </ul>
+
+      <h2>Research Groups</h2>
+      <ul>
+        <li>Digital Research Group</li>
+        <li>Practice as Research Group</li>
+        <li>Participation Research Group</li>
+        <li>Pedagogic Research Group</li>
+        <li>Policy and Leadership Research Group</li>
+        <li>Place Research Group</li>
+      </ul>
+
+      <h2>Media Contributions</h2>
+      <p>I have contributed as a columnist to:</p>
+      <ul>
+        <li>Harper’s Bazaar</li>
+        <li>Ying Ming Theatre</li>
+        <li>Finance Today</li>
+        <li>Principals’ Senior Advisor</li>
+        <li>Art Life</li>
+        <li>Home of Drama</li>
+        <li>Daily Hubei</li>
+        <li>Children/Family/Society</li>
+        <li>Sohu Website</li>
+      </ul>
+
+      <h2>Peer Review</h2>
+      <ul>
+        <li><em>"Norms and Storms"</em> Special Issue, Conjunctions</li>
+        <li>Cambridge China Education Forum</li>
+      </ul>
+
+      <h2>Contact</h2>
+      <p class="muted">Email: <a href="mailto:pcuylu@leeds.ac.uk">pcuylu@leeds.ac.uk</a></p>
+    </section>
+
+    <footer class="muted smallcaps" style="margin-top:28px;padding-bottom:36px">©2025 Dr. Yaxin Luo</footer>
+  </main>
+
+
+</body></html>
