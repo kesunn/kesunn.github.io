@@ -6,7 +6,7 @@
 							<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Dr. Yaxin Luo — LAHRI Postdoctoral Visiting Fellow</title>
+  <title>Dr Yaxin Luo — LAHRI Postdoctoral Visiting Fellow</title>
 
   <!-- Google Fonts: choose clear, academic-looking fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&amp;family=Montserrat:wght@400;600&amp;display=swap" rel="stylesheet">
@@ -49,10 +49,11 @@
     }
 
     .photo{
-      flex:0 0 180px;
       width:180px;
       height:180px;
-      border-radius:50%; /* 圆形头像 */
+      flex:none; /* 防止 flex 拉伸变形 */
+      aspect-ratio:1/1; /* 保证永远是正方形，从而保持圆形 */
+      border-radius:50%;
       overflow:hidden;
       box-shadow:0 6px 18px rgba(0,0,0,0.12);
       border:3px solid #fff;
@@ -141,7 +142,7 @@
       </div>
 
       <div class="hero-info">
-        <h1>Dr. Yaxin Luo</h1>
+        <h1>Dr Yaxin Luo</h1>
         <div class="role">LAHRI Postdoctoral Visiting Fellow — School: LAHRI</div>
         <div class="contact">Email: <a href="mailto:pcuylu@leeds.ac.uk">pcuylu@leeds.ac.uk</a></div>
       </div>
@@ -313,7 +314,7 @@
       <p class="muted">Email: <a href="mailto:pcuylu@leeds.ac.uk">pcuylu@leeds.ac.uk</a></p>
     </section>
 
-    <footer class="muted smallcaps" style="margin-top:28px;padding-bottom:36px">©2025 Dr. Yaxin Luo</footer>
+    <footer class="muted smallcaps" style="margin-top:28px;padding-bottom:36px">© 2025 Dr Yaxin Luo</footer>
   </main>
 
 
